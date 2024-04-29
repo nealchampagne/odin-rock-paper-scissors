@@ -14,9 +14,9 @@ const getComputerChoice = () => {
 const getHumanChoice = () => {
   let keepGoing = true;
   while (keepGoing) {
-  let choice = prompt('Choose your weapon: Rock, Paper, or Scissors!');
+  let choice = prompt(`Choose your weapon: Rock, Paper, or Scissors! (best 3 out of 5)`);
   if (choice === null) {
-    console.log(`That's right, run away, you coward!`);
+    console.log(`Make a choice, you coward!`);
     break;
   } else {choice = choice.toLowerCase()};
 
@@ -38,25 +38,41 @@ const getHumanChoice = () => {
 let humanScore = 0;
 let computerScore = 0;
 
-/**Game loop*/
+/**Play Round*/
 const playRound = (humanChoice, computerChoice) => {
   if (humanChoice === 'rock' && computerChoice === 'scissors') {
-    console.log(`You win! Rock crushes Scissors!`);
     humanScore++;
+    console.log(`You win! Rock crushes Scissors! Player: ${humanScore}, Computer: ${computerScore}`);
   } else if (humanChoice === 'paper' && computerChoice === 'rock') {
-    console.log(`You win! Paper covers Rock!`);
     humanScore++;
+    console.log(`You win! Paper covers Rock! Player: ${humanScore}, Computer: ${computerScore}`);
   } else if (humanChoice === 'scissors' && computerChoice === 'paper') {
-    console.log(`You win! Scissors cuts Paper!`);
     humanScore++;
+    console.log(`You win! Scissors cuts Paper! Player: ${humanScore}, Computer: ${computerScore}`);
   } else if (humanChoice === 'scissors' && computerChoice === 'rock') {
-    console.log(`You lose! Rock crushes Scissors!`);
     computerScore++;
+    console.log(`You lose! Rock crushes Scissors! Player: ${humanScore}, Computer: ${computerScore}`);
   } else if (humanChoice === 'rock' && computerChoice === 'paper') {
-    console.log(`You lose! Paper covers Rock!`);
     computerScore++;
+    console.log(`You lose! Paper covers Rock! Player: ${humanScore}, Computer: ${computerScore}`);
   } else if (humanChoice === 'paper' && computerChoice === 'scissors') {
-    console.log(`You lose! Scissors cuts Paper!`);
     computerScore++;
-  } else {console.log(`It's a tie!`)};
+    console.log(`You lose! Scissors cuts Paper! Player: ${humanScore}, Computer: ${computerScore}`);
+  } else if (humanChoice === computerChoice) {
+    console.log(`It's a tie! Player: ${humanScore}, Computer: ${computerScore}`)
+  } else {console.log(`Player: ${humanScore}, Computer: ${computerScore}`)};
 };
+
+/**Game loop*/
+while(humanScore < 3 && computerScore < 3) {
+  playRound(getHumanChoice(), getComputerChoice());
+};
+
+/**Announce winner */
+if (humanScore === 3) {
+  console.log(`Congratulations, you win! ${humanScore} to ${computerScore}`);
+} else {
+  console.log(`Too bad. Computer wins ${computerScore} to ${humanScore}`);
+};
+
+console.log(`Refresh the page to play again!`);
