@@ -1,6 +1,6 @@
 # Rock Paper Scissors
 
 ## Description
-This is my implementation of the Odin Project's Rock Paper Scissors JavaScript project.
+This is my implementation of the Odin Project's Rock Paper Scissors JavaScript project with a simple 3-button UI.
 
-I used a while loop instead of a separate "playGame" function and made the game best 3 out of 5 rather than playing a full 5 rounds for no reason if you've already lost/won.
+The game now uses click events to drive the function calls and goes until either the computer or the human player reach 5 points. The results are displayed through DOM manipulation.
